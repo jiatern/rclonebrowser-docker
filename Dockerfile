@@ -2,7 +2,7 @@
 # RcloneBrowser Dockerfile
 #
 
-FROM jlesage/baseimage-gui:alpine-3.15-glibc
+FROM jlesage/baseimage-gui:alpine-3.12-glibc
 
 # Define build arguments
 ARG RCLONE_VERSION=current
@@ -40,7 +40,7 @@ RUN apk upgrade apk-tools && \
         gcc \
         git \
         qt5-qtbase qt5-qtmultimedia-dev qt5-qttools-dev && \
-    git clone https://github.com/jiatern/RcloneBrowser.git /tmp && \
+    git clone -b test2 https://github.com/kapitainsky/RcloneBrowser.git /tmp && \
     mkdir /tmp/build && \
     cd /tmp/build && \
     cmake .. && \
