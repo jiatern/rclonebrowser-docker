@@ -1,10 +1,12 @@
 # rclonebrowser-docker for Unraid
 
-Since it's quite outdated for some time, I tried to update for my own usage. Use the `latest` tag. The `personal` tag is with my own usage preference. Docker Hub: https://hub.docker.com/r/jiatern/rclonebrowser
+Since it's quite outdated for some time, I tried to update for my own usage.
+
+Docker Hub: https://hub.docker.com/r/jiatern/rclonebrowser
+Use the `latest` tag. The `personal` tag is with my own usage preference. 
 
 Changes:
 - rclone version: v1.62.2
-- Alpine 3.15
 - Rclone Browser beta v2.0.0 (https://github.com/kapitainsky/RcloneBrowser/issues/93)
 - Added CJK font support (no more boxes!)
 
