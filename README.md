@@ -1,4 +1,37 @@
-# rclonebrowser-docker
+# rclonebrowser-docker for Unraid
+
+Since it's quite outdated for some time, I tried to update for my own usage. Use the `latest` tag. The `personal` tag is with my own usage preference. Docker Hub: https://hub.docker.com/r/jiatern/rclonebrowser
+
+Changes:
+- rclone version: v1.62.2
+- Alpine 3.15
+- Rclone Browser beta v2.0.0 (https://github.com/kapitainsky/RcloneBrowser/issues/93)
+- Added CJK font support (no more boxes!)
+
+## Usage on Unraid
+
+Use Docker Compose Manager and the following docker-compose:
+
+```
+services:
+  rclone-browser:
+    image: jiatern/rclonebrowser:latest
+    restart: unless-stopped
+    environment:
+      - USER_ID=1000
+      - GROUP_ID=1000
+      - TZ=Europe/Madrid
+      - KEEP_APP_RUNNING=1
+      - CLEAN_TMP_DIR=1
+    volumes:
+      - /mnt/user/appdata/rclonebrowser:/config
+      - /mnt/user:/media
+    ports:
+      - 5800:5800
+      - 5900:5900
+```
+
+*Below are the original description from the original author*
 
 A repository for creating a docker container including RClone Browser with GUI interface, based on [kapitainsky fork](https://github.com/kapitainsky/RcloneBrowser)
 
