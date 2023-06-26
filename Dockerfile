@@ -2,7 +2,7 @@
 # RcloneBrowser Dockerfile
 #
 
-FROM jlesage/baseimage-gui:alpine-3.12-glibc
+FROM jlesage/baseimage-gui:alpine-3.15-glibc
 
 # Define build arguments
 ARG RCLONE_VERSION=current
@@ -15,8 +15,9 @@ WORKDIR /tmp
 
 # Install Rclone Browser dependencies
 
-RUN apk upgrade apk-tools && \
+RUN apk -U upgrade --no-cache && \
       apk --no-cache add \
+	  curl \
       ca-certificates \
       fuse \
       wget \
@@ -27,7 +28,7 @@ RUN apk upgrade apk-tools && \
       libgcc \
       dbus \
       xterm \
-    && add-pkg font-wqy-zenhei --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+    && add-pkg font-wqy-zenhei --repository https://dl-cdn.alpinelinux.org/alpine/edge/testing \
     && cd /tmp \
     && wget -q http://downloads.rclone.org/rclone-${RCLONE_VERSION}-linux-${ARCH}.zip \
     && unzip /tmp/rclone-${RCLONE_VERSION}-linux-${ARCH}.zip \
@@ -43,7 +44,7 @@ RUN apk upgrade apk-tools && \
     git clone -b test2 https://github.com/kapitainsky/RcloneBrowser.git /tmp && \
     mkdir /tmp/build && \
     cd /tmp/build && \
-    cmake .. && \
+    cmake -DCMAKE_CXX_FLAGS="-Wno-error=deprecated-declarations" .. && \
     cmake --build . && \
     ls -l /tmp/build && \
     cp /tmp/build/build/rclone-browser /usr/bin  && \
@@ -77,5 +78,5 @@ LABEL \
       org.label-schema.name="rclonebrowser" \
       org.label-schema.description="Docker container for RcloneBrowser" \
       org.label-schema.version="unknown" \
-      org.label-schema.vcs-url="https://github.com/romancin/rclonebrowser-docker" \
+      org.label-schema.vcs-url="https://github.com/jiatern/rclonebrowser-docker" \
       org.label-schema.schema-version="1.0"
