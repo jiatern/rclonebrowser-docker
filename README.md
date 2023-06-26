@@ -9,6 +9,7 @@ Changes:
 - rclone version: v1.62.2
 - Rclone Browser beta v2.0.0 (https://github.com/kapitainsky/RcloneBrowser/issues/93)
 - Added CJK font support (no more boxes!)
+- Use alpine-3.15-glibc
 
 ## Usage on Unraid
 
