@@ -6,10 +6,10 @@ Docker Hub: https://hub.docker.com/r/jiatern/rclonebrowser
 Use the `latest` tag. The `personal` tag is with my own usage preference. 
 
 Changes:
-- rclone version: v1.62.2
+- latest rclone version
 - Rclone Browser beta v2.0.0 (https://github.com/kapitainsky/RcloneBrowser/issues/93)
 - Added CJK font support (no more boxes!)
-- Use alpine-3.15-glibc
+- Use alpine-3.18-v4.4.2 
 
 ## Usage on Unraid
 
