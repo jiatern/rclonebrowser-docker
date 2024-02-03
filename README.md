@@ -5,11 +5,23 @@ Since it's quite outdated for some time, I tried to update for my own usage.
 Docker Hub: https://hub.docker.com/r/jiatern/rclonebrowser
 Use the `latest` tag. The `personal` tag is with my own usage preference. 
 
-Changes:
-- latest rclone version
+## Changes compared to original author's image:
+- Latest rclone version
 - Rclone Browser beta v2.0.0 (https://github.com/kapitainsky/RcloneBrowser/issues/93)
-- Added CJK font support (no more boxes!)
-- Use alpine-3.18-v4.4.2 
+- Added CJK font support by default
+- Use alpine-3.18-v4.5.2 
+
+#### Additional changes in `personal` tag:
+- Removed the default `--verbose`, `--stats` and `--stats-file-name-length` rclone flags
+- Smaller remote icons size
+
+## If Tasks is not working (can't save or create new tasks)
+1. Download tasks.bin from here: https://raw.githubusercontent.com/jiatern/rclonebrowser-docker/master/tasks.bin
+2. Save tasks.bin in this directory of the docker container: `/config/xdg/data/rclone-browser/rclone-browser/` (Same directory as queue.conf and scheduler.conf)
+3. Set the owner and permission accordingly (For me, I set to `app:app` which is the same as other .conf files in this directory)
+4. Restart the container, you should see a test task in the Tasks list. Tasks should be working now. Feel free to remove it.
+
+Idea from: https://github.com/kapitainsky/RcloneBrowser?tab=readme-ov-file#portable-vs-standard-mode This probably happened because tasks.bin was not automatically created for some reasons during installation.
 
 ## Usage on Unraid
 
