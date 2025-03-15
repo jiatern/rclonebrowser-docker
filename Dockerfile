@@ -2,7 +2,7 @@
 # RcloneBrowser Dockerfile
 #
 
-FROM jlesage/baseimage-gui:alpine-3.18-v4.5.2
+FROM jlesage/baseimage-gui:alpine-3.21-v4
 
 # Define build arguments
 ARG RCLONE_VERSION=current
@@ -30,9 +30,12 @@ RUN apk -U upgrade --no-cache && \
       xterm \
       openbox \
       font-terminus \
-    && install-glibc \
     && add-pkg font-wqy-zenhei --repository https://dl-cdn.alpinelinux.org/alpine/edge/community \
     && cd /tmp \
+    && wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
+    && wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.35-r1/glibc-2.35-r1.apk \
+    && apk add glibc-2.35-r1.apk \
+    && rm glibc-2.35-r1.apk \
     && wget -q http://downloads.rclone.org/rclone-${RCLONE_VERSION}-linux-${ARCH}.zip \
     && unzip /tmp/rclone-${RCLONE_VERSION}-linux-${ARCH}.zip \
     && mv /tmp/rclone-*-linux-${ARCH}/rclone /usr/bin \
@@ -75,6 +78,15 @@ ENV APP_NAME="RcloneBrowser" \
 # Define mountable directories.
 VOLUME ["/config"]
 VOLUME ["/media"]
+
+# Check if tasks.bin exists, else create
+RUN \
+    if ! [ -f /config/xdg/data/rclone-browser/rclone-browser/ ]; then \
+        echo "Tasks.bin does not exist. Creating one..." \
+        cd '/config/xdg/data/rclone-browser/rclone-browser/' \
+        wget https://raw.githubusercontent.com/jiatern/rclonebrowser-docker/master/tasks.bin \
+        chown app:app tasks.bin ; \
+    fi
 
 # Metadata.
 LABEL \

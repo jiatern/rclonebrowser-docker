@@ -9,7 +9,7 @@ Use the `latest` tag. The `personal` tag is with my own usage preference.
 - Latest rclone version
 - Rclone Browser beta v2.0.0 (https://github.com/kapitainsky/RcloneBrowser/issues/93)
 - Added CJK font support by default
-- Use alpine-3.18-v4.5.2 
+- Use alpine-3.21-v4 
 
 #### Additional changes in `personal` tag:
 - Removed the default `--verbose`, `--stats` and `--stats-file-name-length` rclone flags
